@@ -1,0 +1,228 @@
+{
+  "subset": "FD001",
+  "window": 30,
+  "features": [
+    "s2",
+    "s3",
+    "s4",
+    "s7",
+    "s8",
+    "s9",
+    "s11",
+    "s12",
+    "s13",
+    "s14",
+    "s15",
+    "s17",
+    "s20",
+    "s21"
+  ],
+  "models": {
+    "gradient_boosting": {
+      "rmse": [
+        13.49088472652634
+      ],
+      "score": [
+        237.4554011221942
+      ],
+      "train_seconds": 3.895493984222412,
+      "rmse_mean": 13.49088472652634,
+      "rmse_std": 0.0,
+      "score_mean": 237.4554011221942,
+      "score_std": 0.0
+    },
+    "cnn": {
+      "rmse": [
+        15.266326924905334,
+        15.684528533063899,
+        15.137131878506507
+      ],
+      "score": [
+        374.6047821520254,
+        468.0052478942551,
+        398.7442128142506
+      ],
+      "train_seconds": 233.94522881507874,
+      "epochs": [
+        37,
+        45,
+        49
+      ],
+      "rmse_mean": 15.362662445491914,
+      "rmse_std": 0.23362530363835693,
+      "score_mean": 413.78474762017703,
+      "score_std": 39.58598249930202
+    },
+    "lstm": {
+      "rmse": [
+        14.833057504737384,
+        15.245514773156792,
+        15.095157343437211
+      ],
+      "score": [
+        399.7060728164682,
+        408.66301870482766,
+        421.4431559992287
+      ],
+      "train_seconds": 598.440566778183,
+      "epochs": [
+        38,
+        37,
+        36
+      ],
+      "rmse_mean": 15.05790987377713,
+      "rmse_std": 0.17043235229861503,
+      "score_mean": 409.9374158401749,
+      "score_std": 8.919763164550135
+    },
+    "ensemble": {
+      "rmse": [
+        13.803302736282689
+      ],
+      "score": [
+        284.3164991874232
+      ],
+      "train_seconds": 0.0,
+      "rmse_mean": 13.803302736282689,
+      "rmse_std": 0.0,
+      "score_mean": 284.3164991874232,
+      "score_std": 0.0
+    }
+  },
+  "uncertainty": {
+    "model": "lstm",
+    "passes": 200,
+    "mc_dropout_coverage_90": 0.74,
+    "mc_dropout_mean_width": 28.2722655750513,
+    "conformal_halfwidth": 23.60993194580078,
+    "conformal_coverage_90": 0.87,
+    "conformal_width": 47.21986389160156
+  },
+  "decision": {
+    "horizon": 20,
+    "c_prev": 1.0,
+    "c_fail": 10.0,
+    "policies": {
+      "never maintain": {
+        "total_cost": 160.0,
+        "maintenances": 0,
+        "missed_failures": 16,
+        "unnecessary_maintenances": 0
+      },
+      "always maintain": {
+        "total_cost": 100.0,
+        "maintenances": 100,
+        "missed_failures": 0,
+        "unnecessary_maintenances": 84
+      },
+      "point estimate (pred <= H)": {
+        "total_cost": 45.0,
+        "maintenances": 15,
+        "missed_failures": 3,
+        "unnecessary_maintenances": 2
+      },
+      "uncertainty-aware (P(fail) >= c_prev/c_fail)": {
+        "total_cost": 29.0,
+        "maintenances": 19,
+        "missed_failures": 1,
+        "unnecessary_maintenances": 4
+      },
+      "oracle (knows the true RUL)": {
+        "total_cost": 16.0,
+        "maintenances": 16,
+        "missed_failures": 0,
+        "unnecessary_maintenances": 0
+      }
+    }
+  },
+  "bayesian_network": {
+    "sensors": [
+      "s11",
+      "s4",
+      "s12",
+      "s7",
+      "s15",
+      "s21"
+    ],
+    "arcs": [
+      [
+        "health",
+        "s11"
+      ],
+      [
+        "s4",
+        "s7"
+      ],
+      [
+        "s11",
+        "s4"
+      ],
+      [
+        "s12",
+        "s7"
+      ],
+      [
+        "s11",
+        "s15"
+      ],
+      [
+        "health",
+        "s12"
+      ],
+      [
+        "s11",
+        "s7"
+      ],
+      [
+        "health",
+        "s4"
+      ],
+      [
+        "s4",
+        "s21"
+      ],
+      [
+        "s15",
+        "s21"
+      ],
+      [
+        "health",
+        "s15"
+      ],
+      [
+        "s11",
+        "s21"
+      ],
+      [
+        "s12",
+        "s4"
+      ],
+      [
+        "s4",
+        "s15"
+      ],
+      [
+        "s11",
+        "s12"
+      ]
+    ],
+    "accuracy": 0.67,
+    "macro_f1": 0.5798199078598353,
+    "lstm_as_classifier_accuracy": 0.85,
+    "lstm_as_classifier_macro_f1": 0.8417215599110931,
+    "example_evidence": {
+      "s11": "high",
+      "s4": "high"
+    },
+    "example_posterior": {
+      "critical": 0.48780866121775246,
+      "degrading": 0.42739860202069924,
+      "healthy": 0.08479273676154842
+    },
+    "prior": {
+      "critical": 0.1502859358340603,
+      "degrading": 0.29083066782979555,
+      "healthy": 0.5588833963361443
+    }
+  }
+}
