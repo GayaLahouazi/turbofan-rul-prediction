@@ -3,6 +3,9 @@
 ![tests](https://github.com/GayaLahouazi/turbofan-rul-prediction/actions/workflows/tests.yml/badge.svg)
 ![python](https://img.shields.io/badge/python-3.11%2B-blue) ![pytorch](https://img.shields.io/badge/PyTorch-2.x-ee4c2c) ![license](https://img.shields.io/badge/license-MIT-green)
 
+**Key result:** using the predicted *uncertainty* (not just the predicted RUL) to decide maintenance cuts the
+total cost by 36 % on the 100 NASA test engines (29 vs 45) and misses 1 failure instead of 3.
+
 **Question.** From the sensor history of an aircraft engine, how many flight cycles remain before failure
 (Remaining Useful Life, RUL)? And, more importantly for an airline, **when should the engine go to maintenance?**
 
